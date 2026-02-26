@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Social Buddy helps SMBs grow across every major social platform with strategy, content, and performance-driven social media management." />
+  <title>Social Buddy | Social Media Management for SMB Growth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-900: #070b1a;
+      --bg-850: #0f1730;
+      --bg-800: #101b38;
+      --bg-750: #16254a;
+      --bg-700: #1a2c57;
+      --text-100: #f6f8ff;
+      --text-200: #d4dcf4;
+      --text-300: #9faed8;
+      --accent-500: #39d7ff;
+      --accent-600: #12b8ea;
+      --violet-500: #8d6bff;
+      --success-500: #38d39f;
+      --error-500: #ff658a;
+      --border-soft: rgba(255, 255, 255, 0.14);
+      --shadow-lg: 0 24px 44px rgba(5, 7, 18, 0.45);
+      --shadow-sm: 0 12px 24px rgba(5, 7, 18, 0.35);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --max-width: 1200px;
+      --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 10% 0%, rgba(57, 215, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 90% 10%, rgba(141, 107, 255, 0.13) 0%, transparent 45%),
+        var(--bg-900);
+      color: var(--text-100);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5.5rem 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-lead {
+      color: var(--text-300);
+      max-width: 48ch;
+      margin-bottom: 2.2rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(0);
+      transition: background 260ms var(--ease-premium), backdrop-filter 260ms var(--ease-premium), border-color 260ms var(--ease-premium), padding 260ms var(--ease-premium);
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-header.scrolled {
+      background: rgba(7, 11, 26, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom-color: var(--border-soft);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(140deg, var(--accent-500), var(--violet-500));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #04101b;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 1.2rem;
+      color: var(--text-200);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-500);
+      transition: color 200ms ease;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.7rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.93rem;
+      transition: transform 220ms var(--ease-premium), box-shadow 220ms var(--ease-premium), background 220ms var(--ease-premium), border-color 220ms var(--ease-premium);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    .switcher button:focus-visible {
+      outline: 2px solid var(--accent-500);
+      outline-offset: 2px;
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: var(--border-soft);
+      color: var(--text-100);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(57, 215, 255, 0.65);
+      box-shadow: 0 0 0 4px rgba(57, 215, 255, 0.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(130deg, var(--accent-500), var(--violet-500));
+      color: #061124;
+      box-shadow: 0 10px 28px rgba(57, 215, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 14px 34px rgba(57, 215, 255, 0.42);
+    }
+
+    .hero {
+      padding-top: 4rem;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      color: var(--text-200);
+      font-size: 0.8rem;
+      margin-bottom: 1.2rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.4vw, 4rem);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+    }
+
+    .hero p {
+      color: var(--text-300);
+      max-width: 52ch;
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      color: var(--text-200);
+      font-size: 0.9rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.1rem;
+    }
+
+    .metric {
+      padding: 0.95rem;
+      border-radius: var(--radius-md);
+      background: rgba(16, 27, 56, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .platform-card,
+    .service-card,
+    .benefit-card,
+    .testimonial,
+    .price-card,
+    .process-step,
+    .auth-card {
+      background: linear-gradient(150deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 240ms var(--ease-premium), border-color 240ms var(--ease-premium), box-shadow 240ms var(--ease-premium);
+    }
+
+    .platform-card:hover,
+    .service-card:hover,
+    .benefit-card:hover,
+    .testimonial:hover,
+    .price-card:hover,
+    .process-step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(57, 215, 255, 0.4);
+      box-shadow: 0 18px 30px rgba(7, 11, 26, 0.45);
+    }
+
+    .platform-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(57, 215, 255, 0.14);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-500);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .muted { color: var(--text-300); }
+
+    .process-grid {
+      display: grid;
+      gap: 1rem;
+      counter-reset: steps;
+    }
+
+    .process-step {
+      position: relative;
+      padding-top: 2.2rem;
+    }
+
+    .process-step::before {
+      counter-increment: steps;
+      content: "0" counter(steps);
+      position: absolute;
+      top: 0.8rem;
+      left: 1rem;
+      color: var(--accent-500);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+    }
+
+    .stats-row {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.1rem;
+    }
+
+    .stat {
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 0.95rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .price-card.featured {
+      border-color: rgba(57, 215, 255, 0.58);
+      background: linear-gradient(160deg, rgba(57, 215, 255, 0.18), rgba(141, 107, 255, 0.12));
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 0.26rem 0.7rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.72rem;
+      color: var(--text-200);
+      margin-bottom: 0.9rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
+
+    .price small {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-200);
+    }
+
+    ul.features {
+      list-style: none;
+      margin-bottom: 1rem;
+      color: var(--text-200);
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    ul.features li::before {
+      content: "✓";
+      color: var(--accent-500);
+      margin-right: 0.4rem;
+      font-weight: 700;
+    }
+
+    .pricing-note {
+      margin-top: 1rem;
+      color: var(--text-300);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .auth-grid {
+      display: grid;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .switcher {
+      display: inline-flex;
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 0.2rem;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 1rem;
+    }
+
+    .switcher button {
+      border: 0;
+      background: transparent;
+      color: var(--text-200);
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .switcher button.active {
+      background: rgba(57, 215, 255, 0.16);
+      color: var(--text-100);
+    }
+
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
+
+    form {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    label {
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--text-200);
+    }
+
+    input,
+    textarea {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(7,11,26,0.85);
+      color: var(--text-100);
+      border-radius: var(--radius-sm);
+      padding: 0.68rem 0.75rem;
+      font: inherit;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(57, 215, 255, 0.7);
+      box-shadow: 0 0 0 4px rgba(57, 215, 255, 0.14);
+      outline: none;
+    }
+
+    .error-text {
+      font-size: 0.8rem;
+      color: var(--error-500);
+      min-height: 1.1em;
+    }
+
+    .status-msg {
+      font-size: 0.88rem;
+      min-height: 1.1em;
+    }
+
+    .status-msg.success { color: var(--success-500); }
+    .status-msg.error { color: var(--error-500); }
+
+    .footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 2.3rem 0;
+      color: var(--text-300);
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: inline-flex; }
+      .hero-grid { grid-template-columns: 1.15fr 0.85fr; }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .stats-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .auth-grid { grid-template-columns: 0.9fr 1.1fr; }
+      .section { padding: 6.4rem 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Social Buddy home">
+        <span class="brand-mark">SB</span>
+        <span>Social Buddy</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#platforms">Platforms</a>
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#auth">Signup / Login</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-outline" data-switch="login">Login</button>
+        <a class="btn btn-primary" href="#auth">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="pill">Premium social media management for SMB growth</span>
+          <h1>Grow faster across every social channel with one trusted partner.</h1>
+          <p>Social Buddy helps local businesses turn social media into consistent leads and loyal customers. Strategy, creation, publishing, and optimization — fully managed by a team that understands growth.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#pricing">See Plans</a>
+            <a class="btn btn-outline" href="#process">Book Strategy Call</a>
+          </div>
+          <div class="hero-proof">
+            <span>✅ Trusted by 120+ businesses</span>
+            <span>✅ Avg. 2.8x engagement uplift</span>
+          </div>
+        </div>
+        <aside class="hero-card reveal" aria-label="Performance snapshot">
+          <h3>Last 90 days snapshot</h3>
+          <p class="muted">A sample of what clients track with Social Buddy reporting.</p>
+          <div class="metrics">
+            <div class="metric"><strong>+184%</strong><span class="muted">Reach growth</span></div>
+            <div class="metric"><strong>+132%</strong><span class="muted">Profile visits</span></div>
+            <div class="metric"><strong>4.3x</strong><span class="muted">ROI on paid social</span></div>
+            <div class="metric"><strong>31%</strong><span class="muted">Lower CPL</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="platforms" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Platforms we manage end-to-end.</h2>
+        <p class="section-lead reveal">Unify your voice across every major channel while tailoring creative to each platform's format and audience behavior.</p>
+        <div class="grid-4">
+          <article class="platform-card reveal"><div class="platform-icon">IG</div><h3>Instagram</h3><p class="muted">Content pillars, reels, and community interactions.</p></article>
+          <article class="platform-card reveal"><div class="platform-icon">FB</div><h3>Facebook</h3><p class="muted">Local awareness campaigns and audience nurture posts.</p></article>
+          <article class="platform-card reveal"><div class="platform-icon">X</div><h3>X (Twitter)</h3><p class="muted">Real-time voice, trends, and thought leadership cadence.</p></article>
+          <article class="platform-card reveal"><div class="platform-icon">IN</div><h3>LinkedIn</h3><p class="muted">Authority content for B2B and professional positioning.</p></article>
+          <article class="platform-card reveal"><div class="platform-icon">YT</div><h3>YouTube</h3><p class="muted">Video optimization, thumbnails, and channel growth support.</p></article>
+          <article class="platform-card reveal"><div class="platform-icon">TT</div><h3>TikTok</h3><p class="muted">Short-form concepts designed for attention and retention.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Services designed for measurable SMB outcomes.</h2>
+        <p class="section-lead reveal">From strategy to reporting, every deliverable aligns to growth goals: leads, bookings, store visits, and recurring customer value.</p>
+        <div class="grid-3">
+          <article class="service-card reveal"><h3>Social Strategy</h3><p class="muted">Brand voice, audience mapping, and channel-specific growth roadmap.</p></article>
+          <article class="service-card reveal"><h3>Content Creation</h3><p class="muted">High-quality posts, short-form video, and conversion-focused copywriting.</p></article>
+          <article class="service-card reveal"><h3>Community Management</h3><p class="muted">Fast, professional inbox and comment handling that builds trust.</p></article>
+          <article class="service-card reveal"><h3>Paid Social Campaigns</h3><p class="muted">Precision ad setup, testing, and optimization for lower acquisition cost.</p></article>
+          <article class="service-card reveal"><h3>Analytics & Reports</h3><p class="muted">Clear dashboards, monthly insights, and next-step recommendations.</p></article>
+          <article class="service-card reveal"><h3>Creative Sprints</h3><p class="muted">Rapid campaign launches for promotions, events, and seasonal pushes.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">A simple process that keeps growth consistent.</h2>
+        <p class="section-lead reveal">Designed for busy owners: minimal back-and-forth, maximum visibility.</p>
+        <div class="process-grid">
+          <article class="process-step reveal"><h3>Discovery</h3><p class="muted">We audit your channels, market, and offer to spot quick wins.</p></article>
+          <article class="process-step reveal"><h3>Strategy</h3><p class="muted">You get a channel plan, content framework, and KPI targets.</p></article>
+          <article class="process-step reveal"><h3>Execution</h3><p class="muted">Our team creates, schedules, publishes, and manages engagement.</p></article>
+          <article class="process-step reveal"><h3>Optimization</h3><p class="muted">We test content, improve paid performance, and iterate monthly.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Why businesses choose Social Buddy.</h2>
+        <p class="section-lead reveal">High standards, transparent communication, and growth accountability.</p>
+        <div class="grid-3">
+          <article class="benefit-card reveal"><h3>SMB-focused expertise</h3><p class="muted">Campaigns built for local and regional business realities, not generic templates.</p></article>
+          <article class="benefit-card reveal"><h3>Dedicated account manager</h3><p class="muted">One clear point of contact and proactive monthly performance reviews.</p></article>
+          <article class="benefit-card reveal"><h3>Transparent reporting</h3><p class="muted">Understand what is working, what to improve, and where to invest next.</p></article>
+        </div>
+        <div class="stats-row reveal" aria-label="Company highlights">
+          <div class="stat"><strong>120+</strong><span class="muted">Active SMB clients served</span></div>
+          <div class="stat"><strong>89%</strong><span class="muted">Average 12-month retention rate</span></div>
+          <div class="stat"><strong>24h</strong><span class="muted">Typical support response window</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trust">
+      <div class="container">
+        <h2 class="section-title reveal">Trusted by growth-minded teams.</h2>
+        <p class="section-lead reveal">Real feedback from clients who needed predictable social performance.</p>
+        <div class="grid-3">
+          <blockquote class="testimonial reveal">
+            <p>“Social Buddy made our social channels look and perform like a premium brand. We saw qualified inquiries in the first month.”</p>
+            <footer class="muted">— Olivia Tran, Clinic Owner</footer>
+          </blockquote>
+          <blockquote class="testimonial reveal">
+            <p>“Their process is clean, reporting is transparent, and we finally have consistent leads from social.”</p>
+            <footer class="muted">— Marcus Bell, Home Services Director</footer>
+          </blockquote>
+          <blockquote class="testimonial reveal">
+            <p>“They feel like an extension of our team. Execution quality and turnaround speed are excellent.”</p>
+            <footer class="muted">— Priya Shah, Startup Co-Founder</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Choose a plan built for your stage.</h2>
+        <p class="section-lead reveal">Straightforward pricing with room to customize for larger teams and multi-location brands.</p>
+        <div class="grid-3">
+          <article class="price-card reveal">
+            <span class="badge">Starter</span>
+            <h3 class="price">$799 <small>/month</small></h3>
+            <ul class="features">
+              <li>2 managed platforms</li>
+              <li>12 branded posts / month</li>
+              <li>Basic inbox engagement</li>
+              <li>Monthly performance report</li>
+            </ul>
+            <a href="#auth" class="btn btn-outline">Choose Starter</a>
+          </article>
+          <article class="price-card featured reveal">
+            <span class="badge">Most Popular · Growth</span>
+            <h3 class="price">$1,499 <small>/month</small></h3>
+            <ul class="features">
+              <li>4 managed platforms</li>
+              <li>24 content assets / month</li>
+              <li>Community management</li>
+              <li>Ad optimization support</li>
+            </ul>
+            <a href="#auth" class="btn btn-primary">Choose Growth</a>
+          </article>
+          <article class="price-card reveal">
+            <span class="badge">Pro</span>
+            <h3 class="price">$2,499 <small>/month</small></h3>
+            <ul class="features">
+              <li>All key platforms covered</li>
+              <li>Video-first content workflow</li>
+              <li>Weekly optimization sync</li>
+              <li>Priority strategy support</li>
+            </ul>
+            <a href="#auth" class="btn btn-outline">Choose Pro</a>
+          </article>
+        </div>
+        <p class="pricing-note reveal">Need more scale? We offer custom enterprise and multi-location packages.</p>
+      </div>
+    </section>
+
+    <section id="auth" class="section">
+      <div class="container auth-grid">
+        <div class="reveal">
+          <h2 class="section-title">Create your Social Buddy account.</h2>
+          <p class="section-lead">UI and validation are fully ready for backend integration. Hook your auth API into the form submission handler when you're ready.</p>
+          <div class="auth-card">
+            <h3>Integration-ready notes</h3>
+            <p class="muted">Each form includes clean field names and separate handlers so you can connect signup/login endpoints with minimal refactoring.</p>
+          </div>
+        </div>
+
+        <div class="auth-card reveal">
+          <div class="switcher" role="tablist" aria-label="Authentication form switcher">
+            <button type="button" class="active" data-form="signup" role="tab" aria-selected="true">Sign Up</button>
+            <button type="button" data-form="login" role="tab" aria-selected="false">Login</button>
+          </div>
+
+          <section class="form-panel active" data-panel="signup">
+            <form id="signupForm" novalidate data-endpoint="/api/auth/signup">
+              <label>Full Name
+                <input type="text" id="signupName" name="fullName" autocomplete="name" required minlength="2" />
+                <span class="error-text" data-error-for="signupName"></span>
+              </label>
+              <label>Business Email
+                <input type="email" id="signupEmail" name="email" autocomplete="email" required />
+                <span class="error-text" data-error-for="signupEmail"></span>
+              </label>
+              <label>Password
+                <input type="password" id="signupPassword" name="password" autocomplete="new-password" required minlength="8" />
+                <span class="error-text" data-error-for="signupPassword"></span>
+              </label>
+              <label>Confirm Password
+                <input type="password" id="signupConfirm" name="confirmPassword" autocomplete="new-password" required minlength="8" />
+                <span class="error-text" data-error-for="signupConfirm"></span>
+              </label>
+              <button class="btn btn-primary" type="submit">Create Account</button>
+              <p class="status-msg" id="signupStatus" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <section class="form-panel" data-panel="login">
+            <form id="loginForm" novalidate data-endpoint="/api/auth/login">
+              <label>Business Email
+                <input type="email" id="loginEmail" name="email" autocomplete="email" required />
+                <span class="error-text" data-error-for="loginEmail"></span>
+              </label>
+              <label>Password
+                <input type="password" id="loginPassword" name="password" autocomplete="current-password" required minlength="8" />
+                <span class="error-text" data-error-for="loginPassword"></span>
+              </label>
+              <button class="btn btn-primary" type="submit">Login</button>
+              <p class="status-msg" id="loginStatus" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> Social Buddy. Built for growth-focused businesses.</p>
+      <p><a href="#top">Back to top</a> · hello@socialbuddy.com · +1 (555) 123-9876</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const reveals = document.querySelectorAll('.reveal');
+    const switchButtons = document.querySelectorAll('.switcher button');
+    const formPanels = document.querySelectorAll('.form-panel');
+    const navLoginButton = document.querySelector('[data-switch="login"]');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 8);
+    });
+
+    // IntersectionObserver reveals content as sections enter viewport.
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    reveals.forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index % 6, 4) * 70}ms`;
+      revealObserver.observe(el);
+    });
+
+    function activatePanel(name) {
+      switchButtons.forEach((button) => {
+        const isActive = button.dataset.form === name;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', String(isActive));
+      });
+
+      formPanels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.panel === name);
+      });
+    }
+
+    switchButtons.forEach((button) => {
+      button.addEventListener('click', () => activatePanel(button.dataset.form));
+    });
+
+    navLoginButton.addEventListener('click', () => {
+      activatePanel('login');
+      document.getElementById('auth').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    function setError(inputId, message = '') {
+      const errorNode = document.querySelector(`[data-error-for="${inputId}"]`);
+      if (errorNode) errorNode.textContent = message;
+    }
+
+    function validateEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateSignup(form) {
+      let valid = true;
+      const name = form.fullName.value.trim();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      const confirm = form.confirmPassword.value;
+
+      setError('signupName', name.length >= 2 ? '' : 'Please enter your full name.');
+      setError('signupEmail', validateEmail(email) ? '' : 'Enter a valid email address.');
+      setError('signupPassword', password.length >= 8 ? '' : 'Password must be at least 8 characters.');
+      setError('signupConfirm', confirm === password ? '' : 'Passwords do not match.');
+
+      if (name.length < 2 || !validateEmail(email) || password.length < 8 || confirm !== password) valid = false;
+      return valid;
+    }
+
+    function validateLogin(form) {
+      const email = form.email.value.trim();
+      const password = form.password.value;
+
+      setError('loginEmail', validateEmail(email) ? '' : 'Enter a valid email address.');
+      setError('loginPassword', password.length >= 8 ? '' : 'Password must be at least 8 characters.');
+
+      return validateEmail(email) && password.length >= 8;
+    }
+
+    const signupForm = document.getElementById('signupForm');
+    const loginForm = document.getElementById('loginForm');
+    const signupStatus = document.getElementById('signupStatus');
+    const loginStatus = document.getElementById('loginStatus');
+    const API_BASE_URL = 'http://localhost:5000';
+
+    signupForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      signupStatus.textContent = '';
+
+      if (!validateSignup(signupForm)) {
+        signupStatus.className = 'status-msg error';
+        signupStatus.textContent = 'Please fix the highlighted fields and try again.';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            name: signupForm.fullName.value.trim(),
+            email: signupForm.email.value.trim(),
+            password: signupForm.password.value
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          signupStatus.className = 'status-msg error';
+          signupStatus.textContent = data.message || 'Signup failed';
+          return;
+        }
+
+        signupStatus.className = 'status-msg success';
+        signupStatus.textContent = data.message || 'Signup successful';
+        signupForm.reset();
+      } catch (error) {
+        signupStatus.className = 'status-msg error';
+        signupStatus.textContent = 'Server error, try again later';
+      }
+    });
+
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      loginStatus.textContent = '';
+
+      if (!validateLogin(loginForm)) {
+        loginStatus.className = 'status-msg error';
+        loginStatus.textContent = 'Please enter valid login credentials.';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email: loginForm.email.value.trim(),
+            password: loginForm.password.value
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          loginStatus.className = 'status-msg error';
+          loginStatus.textContent = data.message || 'Login failed';
+          return;
+        }
+
+        loginStatus.className = 'status-msg success';
+        loginStatus.textContent = data.message || 'Login successful';
+        loginForm.reset();
+      } catch (error) {
+        loginStatus.className = 'status-msg error';
+        loginStatus.textContent = 'Server error, try again later';
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
